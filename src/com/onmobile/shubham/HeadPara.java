@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public class HeadPara {
 
-	Logger logger= LogManager.getLogger(HeadPara.class);
+	 Logger logger= LogManager.getLogger(HeadPara.class);
 
 	void gettingPara(HttpServletRequest request)
 	{
