@@ -1,0 +1,40 @@
+<Configuration>
+	<Properties>
+		<Property name="file-header">Date,Email,Action,Status,Condition,Message
+		</Property>
+	</Properties>
+
+	<Appenders>
+		<RollingFile name="RollingFile" fileName="d:\\debug.log"
+			filePattern="d:\\debug-%d{yyyy-MM-dd}-%i.log.log">
+			<PatternLayout pattern="%d %5p [%t] (%c:%M():%L) - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+
+		<RollingFile name="transactional" fileName="d:\\TLOG.csv"
+			filePattern="d:\\TLOG-%d{yyyy-MM-dd}-%i.log.csv">
+			<CsvParameterLayout delimiter="," header="${file-header}\n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Root level="debug" additivity="false">
+		</Root>
+
+		<logger name="tran.com.onmobile" level="debug" additivity="false">
+			<AppenderRef ref="transactional" />
+		</logger>
+
+		<logger name="com.onmobile" level="debug" additivity="false">
+			<AppenderRef ref="RollingFile" />
+		</logger>
+	</Loggers>
+
+</Configuration>

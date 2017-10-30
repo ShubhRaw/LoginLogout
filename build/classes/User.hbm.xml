@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.onmobile.shubham.User" table="userdata">
+
+		<meta attribute="class-description">
+			User Details
+		</meta>
+
+		<id name="email" type="string" column="email" />
+
+		<property name="name" column="name" type="string" />
+		<property name="password" column="password" type="string" />
+		<property name="course" column="course" type="string" />
+		<property name="address" column="address" type="string" />
+		<property name="photo" column="photo" type="string" />
+		<property name="counter" column="counter" type="int" />
+		<property name="la" column="la" type="long" />
+
+	</class>
+</hibernate-mapping>

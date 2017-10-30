@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Signup</title>
+</head>
+<body bgcolor="#b3c6ff">
+	<hr>
+	<h1 align="center">Signup</h1>
+	<hr>
+	<br>
+	<form action="SignupServlet" method="post" onsubmit="return val()"
+		enctype="multipart/form-data">
+		<table align="center">
+			<caption>
+				<h3>Enter Your Details</h3>
+			</caption>
+			<tr>
+				<td><label>Name:</label></td>
+				<td><input type="text" name="name" id="name"
+					required="required" onfocusout="nameout()" />
+					<p id="pname" style="font-size: 80%; color: red;"></p></td>
+			</tr>
+
+			<tr>
+				<td><label>Email ID:</label></td>
+				<td><input type="text" name="email" id="email"
+					required="required" onfocusout="emailout()" />
+					<p id="pemail" style="font-size: 80%; color: red;"></p></td>
+			</tr>
+
+			<tr>
+				<td><label>Password:</label></td>
+				<td><input type="password" name="password" id="pwd"
+					required="required" onfocusout="passwordout()" />
+					<p id="ppwd" style="font-size: 80%; color: red;"></p></td>
+			</tr>
+
+			<tr>
+				<td><label>Verify Password:</label></td>
+				<td><input type="password" name="email" id="pv"
+					onfocusout="verifypwd()" />
+					<p id="pvp" style="font-size: 80%; color: red;"></p></td>
+			</tr>
+
+			<tr>
+				<td><label>Course Name:</label></td>
+				<td><select name="courselist" required="required">
+						<option value="MCA">MCA</option>
+						<option value="MBA">MBA</option>
+						<option value="BCA">BCA</option>
+						<option value="BBA">BBA</option>
+				</select></td>
+			</tr>
+
+			<tr>
+				<td><label>Address:</label></td>
+				<td><textarea rows="10" cols="50" name="address"
+						maxlength="300"> </textarea></td>
+			</tr>
+
+			<tr>
+				<td><label>Photo:</label></td>
+				<td><input type="file" name="pic" accept="image/*"></td>
+			</tr>
+
+			<tr>
+				<td><br></td>
+				<td><br></td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" value="Signup"></td>
+				<td><button onclick="location.href = 'login.html'">Cancel</button></td>
+			</tr>
+
+		</table>
+
+	</form>
+
+	<script>
+		function nameout() {
+			var x = document.getElementById("name");
+			// regex for Name without any special characters
+			var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+			if (format.test(x.value) == true) {
+				document.getElementById("pname").innerHTML = "No Special Characters";
+				return false;
+			} else {
+				document.getElementById("pname").innerHTML = "";
+				return true;
+			}
+
+		}
+
+		function emailout() {
+			var x = document.getElementById("email");
+			//regex for no_white_space_String@no_white_space_String.no_white_space_String
+
+			var format = /\S+@\S+\.\S+/;
+
+			if (format.test(x.value) == false) {
+				document.getElementById("pemail").innerHTML = "Enter valid Email";
+				return false;
+			} else {
+				document.getElementById("pemail").innerHTML = "";
+				return true;
+			}
+		}
+
+		function passwordout() {
+			var x = document.getElementById("pwd");
+			//atleast 1 from a-z
+			//atleast 1 from A-Z
+			//atleast 1 from 0-9
+			//atleast 1 special character
+			//min. 8 characters
+			var format = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}/;
+
+			if (format.test(x.value) == false) {
+				document.getElementById("ppwd").innerHTML = "Min. 8 char, atleast one alphabet in lowercase and uppercase, one digit, one special char";
+				return false;
+			} else {
+				document.getElementById("ppwd").innerHTML = "";
+				return true;
+			}
+		}
+
+		function verifypwd() {
+			var x = document.getElementById("pwd");
+			var y = document.getElementById("pv");
+			if (x.value != y.value) {
+				document.getElementById("pvp").innerHTML = "Password should be same";
+				return false;
+			} else {
+				document.getElementById("pvp").innerHTML = "";
+				return true;
+			}
+		}
+
+		function val() {
+			var name = nameout();
+			var email = emailout();
+			var password = passwordout();
+			var pv = verifypwd();
+			if (name == false || email == false || password == false
+					|| pv == false) {
+				alert("Please enter correct details!");
+				return false;
+			}
+
+		}
+	</script>
+</body>
+</html>
