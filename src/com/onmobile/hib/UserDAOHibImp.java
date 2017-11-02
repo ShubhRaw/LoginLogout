@@ -3,6 +3,7 @@ package com.onmobile.hib;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+//live
 
 import com.onmobile.shubham.User;
 import com.onmobile.shubham.UserDAO;
